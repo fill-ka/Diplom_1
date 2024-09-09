@@ -1,7 +1,7 @@
 from typing import List
 
-from praktikum.bun import Bun
-from praktikum.ingredient import Ingredient
+from practikum.bun import Bun
+from practikum.ingredient import Ingredient
 
 
 class Burger:
@@ -36,13 +36,14 @@ class Burger:
 
         return price
 
-    def get_receipt(self) -> str:
-        receipt: List[str] = [f'(==== {self.bun.get_name()} ====)']
-
+    def get_receipt(self):
+        total_price = self.bun.get_price()  # Учитываем цену булки один раз
         for ingredient in self.ingredients:
-            receipt.append(f'= {str(ingredient.get_type()).lower()} {ingredient.get_name()} =')
+            total_price += ingredient.get_price()
+        # Генерация строки с рецептом
+        receipt = f"(==== {self.bun.get_name()} ====)\n"
+        for ingredient in self.ingredients:
+            receipt += f"= {ingredient.get_type().lower()} {ingredient.get_name()} =\n"
+        receipt += f"(==== {self.bun.get_name()} ====)\n\nPrice: {total_price}"
+        return receipt
 
-        receipt.append(f'(==== {self.bun.get_name()} ====)\n')
-        receipt.append(f'Price: {self.get_price()}')
-
-        return '\n'.join(receipt)
