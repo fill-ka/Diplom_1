@@ -1,7 +1,7 @@
 from unittest.mock import Mock
-from burger import Burger
-from ingredient import Ingredient
-from bun import Bun
+from practikum.burger import Burger
+from practikum.ingredient import Ingredient
+from practikum.bun import Bun
 
 
 def test_burger_get_receipt():
@@ -22,5 +22,5 @@ def test_burger_get_receipt():
     # Получаем рецепт
     receipt = burger.get_receipt()
 
-    # Проверяем, что цена добавленного ингредиента корректно отображается в рецепте
-    assert 'Price: 120' in receipt  # Ожидаемая цена: 100 (булка) + 20 (ингредиент)
+    # Проверяем корректную цену (100 за каждую из двух булок + 20 за ингредиент)
+    assert 'Price: 120' in receipt  # Ожидаемая цена: 100 (верхняя булка) + 100 (нижняя булка) + 20 (ингредиент)

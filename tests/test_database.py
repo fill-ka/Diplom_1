@@ -1,4 +1,4 @@
-from database import Database
+from practikum.database import Database
 
 
 def test_database_available_buns():
